@@ -1,0 +1,46 @@
+$container-max-widths: (
+  "sm": 540px,
+  "md": 720px,
+  "lg": 960px,
+  "xl": 1440px,
+);
+
+@import "~bootstrap/scss/bootstrap";
+
+// $theme-colors: map-merge(
+//   (
+//     "primary":    $primary,
+//     "secondary":  $secondary,
+//     "success":    $success,
+//     "info":       $info,
+//     "warning":    $warning,
+//     "danger":     $danger,
+//     "light":      $light,
+//     "dark":       $dark
+//   ),
+//   $theme-colors
+// );
+
+body {
+  background: $dark;
+}
+
+.navbar {
+  background: #6c757d;
+  border: 1px solid $warning;
+  border-top: none;
+}
+
+.footer {
+  border-top: 1px solid #6c757d;
+  color: #6c757d;
+  text-align: center;
+}
+
+.card {
+  border: 1px solid $warning;
+}
+.card-title {
+  font-weight: bold;
+  color: $warning;
+}
