@@ -9,6 +9,18 @@
     "build": "nextron build",
     "postinstall": "electron-builder install-app-deps"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run type-check"
+    }
+  },
+  "lint-staged": {
+    "*.@(ts|tsx)": [
+      "npm run lint",
+      "npm run format"
+    ]
+  },
   "dependencies": {
     "@ant-design/icons": "^4.4.0",
     "@zeit/next-less": "^1.0.1",
