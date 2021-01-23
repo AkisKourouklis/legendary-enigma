@@ -1,11 +1,11 @@
-import update from 'immutability-helper'
-import { AnyAction } from 'redux'
-import { CREATE_ERROR, CLEAR_ERROR } from '../types'
+import update from "immutability-helper"
+import { AnyAction } from "redux"
+import { CREATE_ERROR, CLEAR_ERROR } from "../types"
 
 export interface State {
   message: string | null
   description: string | null
-  type: 'success' | 'info' | 'warning' | 'error' | null
+  type: "success" | "info" | "warning" | "error" | null
   isError: boolean
 }
 

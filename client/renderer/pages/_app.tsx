@@ -1,9 +1,9 @@
-import Head from 'next/head'
-import { wrapper } from '../store/store'
-import { PersistGate } from 'redux-persist/integration/react'
-import { useStore } from 'react-redux'
-import { persistStore } from 'redux-persist'
-import '../styles/global.less'
+import Head from "next/head"
+import { wrapper } from "../store/store"
+import { PersistGate } from "redux-persist/integration/react"
+import { useStore } from "react-redux"
+import { persistStore } from "redux-persist"
+import "../styles/global.less"
 
 const MyApp = ({ Component, pageProps }) => {
   const store = useStore()

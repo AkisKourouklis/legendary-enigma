@@ -1,5 +1,9 @@
-import { CLEAR_ERROR, CREATE_ERROR } from '../types'
-import { INotification } from '../../components/Main/Main'
+import { CLEAR_ERROR, CREATE_ERROR } from "../types"
+interface INotification {
+  message: string
+  description: string
+  type: "success" | "info" | "warning" | "error"
+}
 
 export const createNewError = ({
   message,

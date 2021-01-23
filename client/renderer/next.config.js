@@ -4,21 +4,21 @@
 //     target: "electron-renderer",
 //   }),
 // };
-const withLess = require("@zeit/next-less");
-const lessToJS = require("less-vars-to-js");
-const withPlugins = require("next-compose-plugins");
+const withLess = require("@zeit/next-less")
+const lessToJS = require("less-vars-to-js")
+const withPlugins = require("next-compose-plugins")
 
-const fs = require("fs");
-const path = require("path");
+const fs = require("fs")
+const path = require("path")
 
-const dotenv = require("dotenv");
+const dotenv = require("dotenv")
 
-dotenv.config();
+dotenv.config()
 
 // Where your antd-custom.less file lives
 const themeVariables = lessToJS(
   fs.readFileSync(path.resolve(__dirname, "./styles/custom.less"), "utf8")
-);
+)
 
 const plugins = [
   [
@@ -29,24 +29,24 @@ const plugins = [
       },
       webpack: (config, { isServer }) => {
         if (isServer) {
-          const antStyles = /antd\/.*?\/style.*?/;
-          const origExternals = [...config.externals];
+          const antStyles = /antd\/.*?\/style.*?/
+          const origExternals = [...config.externals]
           config.externals = [
             (context, request, callback) => {
-              if (request.match(antStyles)) return callback();
+              if (request.match(antStyles)) return callback()
               if (typeof origExternals[0] === "function") {
-                origExternals[0](context, request, callback);
+                origExternals[0](context, request, callback)
               } else {
-                callback();
+                callback()
               }
             },
             ...(typeof origExternals[0] === "function" ? [] : origExternals),
-          ];
+          ]
 
           config.module.rules.unshift({
             test: antStyles,
             use: "null-loader",
-          });
+          })
         }
 
         const builtInLoader = config.module.rules.find((rule) => {
@@ -55,12 +55,12 @@ const plugins = [
               rule.oneOf.find((deepRule) => {
                 return (
                   deepRule.test && deepRule.test.toString().includes("/a^/")
-                );
+                )
               }) !== undefined
-            );
+            )
           }
-          return false;
-        });
+          return false
+        })
 
         if (typeof builtInLoader !== "undefined") {
           config.module.rules.push({
@@ -68,18 +68,18 @@ const plugins = [
               ...builtInLoader.oneOf.filter((rule) => {
                 return (
                   (rule.test && rule.test.toString().includes("/a^/")) !== true
-                );
+                )
               }),
             ],
-          });
+          })
         }
 
-        config.resolve.alias["@"] = path.resolve(__dirname);
-        return config;
+        config.resolve.alias["@"] = path.resolve(__dirname)
+        return config
       },
     }),
   ],
-];
+]
 
 const nextConfig = {
   env: {},
@@ -90,6 +90,6 @@ const nextConfig = {
     Object.assign(config, {
       target: "electron-renderer",
     }),
-};
+}
 
-module.exports = withPlugins(plugins, nextConfig);
+module.exports = withPlugins(plugins, nextConfig)

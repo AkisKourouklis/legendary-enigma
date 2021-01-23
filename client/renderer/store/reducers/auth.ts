@@ -1,13 +1,13 @@
-import update from 'immutability-helper'
-import { AnyAction } from 'redux'
+import update from "immutability-helper"
+import { AnyAction } from "redux"
 import {
   AUTH_FAIL,
   AUTH_LOGOUT,
   AUTH_REGISTER,
   AUTH_START,
   AUTH_SUCCESS,
-} from '../types'
-import { IUser } from '../actions/auth'
+} from "../types"
+import { IUser } from "../actions/auth"
 
 interface State {
   isLoading: boolean
@@ -18,7 +18,7 @@ interface State {
 
 const initialState: State = {
   isLoading: false,
-  token: '',
+  token: "",
   isAuth: false,
   user: null,
 }
@@ -45,7 +45,7 @@ const authLogout = (state: State) => {
   return update(state, {
     isLoading: { $set: false },
     isAuth: { $set: false },
-    token: { $set: '' },
+    token: { $set: "" },
     user: { $set: null },
   })
 }

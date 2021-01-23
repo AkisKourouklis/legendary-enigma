@@ -1,16 +1,16 @@
-import axios from 'axios'
-import { v4 } from 'uuid'
-import { apiUrl } from '../../config/vars'
+import axios from "axios"
+import { v4 } from "uuid"
+import { apiUrl } from "../../config/vars"
 import {
   AUTH_FAIL,
   AUTH_LOGOUT,
   AUTH_REGISTER,
   AUTH_START,
   AUTH_SUCCESS,
-} from '../types'
-import { createError as createServerError } from '../../utils/error'
-import { createError } from './error'
-import { NextRouter } from 'next/router'
+} from "../types"
+import { createError as createServerError } from "../../utils/error"
+import { createError } from "./error"
+import { NextRouter } from "next/router"
 
 export interface IRegister {
   username: string
@@ -96,7 +96,7 @@ export const AuthLogin = (identifier: string, password: string) => {
         createError({
           message: JSON.stringify(errMsg),
           description: errorId,
-          type: 'error',
+          type: "error",
         })
       )
       createServerError({ message: errMsg, uuid: errorId })
@@ -121,7 +121,7 @@ export const AuthRegister = ({
       dispatch(authRegister())
       router.reload()
     } catch (error) {
-      if (error.response.data.error !== 'Bad Request') {
+      if (error.response.data.error !== "Bad Request") {
         const errMsg = JSON.stringify(error)
         const errorId = v4()
 
@@ -129,7 +129,7 @@ export const AuthRegister = ({
           createError({
             message: JSON.stringify(errMsg),
             description: errorId,
-            type: 'error',
+            type: "error",
           })
         )
         createServerError({ message: errMsg, uuid: errorId })
@@ -144,7 +144,7 @@ export const AuthRegister = ({
           createError({
             message: JSON.stringify(errMsg),
             description: errorId,
-            type: 'error',
+            type: "error",
           })
         )
         createServerError({ message: errMsg, uuid: errorId })
