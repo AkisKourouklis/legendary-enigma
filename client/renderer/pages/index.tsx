@@ -1,7 +1,12 @@
-import Home from "../components/Home/Home";
+import { FC } from "react"
+import Home from "../components/Home/Home"
 
-function Index() {
-  return <Home />;
+const Index: FC = () => {
+  return (
+    <>
+      <Home />
+    </>
+  )
 }
 
-export default Index;
+export default Index
